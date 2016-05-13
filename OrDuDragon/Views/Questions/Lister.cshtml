@@ -1,0 +1,65 @@
+﻿@model IEnumerable<OrDuDragon.Models.Question>
+
+@{
+    ViewBag.Title = "Lister";
+}
+
+<h2>Lister</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Enoncer)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Reponce1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reponce2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reponce3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reponce4)
+        </th>*@
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Dificulter)
+        </th>
+        <th></th>
+    </tr>
+
+@*@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enoncer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reponce1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reponce2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reponce3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reponce4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BonneReponce)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dificulter)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}*@
+
+</table>
