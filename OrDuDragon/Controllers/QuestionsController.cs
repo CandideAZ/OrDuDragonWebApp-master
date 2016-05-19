@@ -9,97 +9,134 @@ using System.Web;
 using System.Web.Mvc;
 
 
+
 // TODO :: handle error page create a new view for that
 namespace OrDuDragon.Controllers
 {
     public class QuestionsController : Controller
     {
-
+        
+        public DataSet ListeQuestion = new DataSet();
         [AuthorisationRequired]
         public ActionResult Index()
         {
             return View();
         }
-        [HttpGet]
-        [AuthorisationRequired]
-        public ActionResult Create()
-        {
-            Question question = new Question();
-            return View(question);
-        }
+        //[HttpGet]
+        //[AuthorisationRequired]
+        //public ActionResult Create()
+        //{
+        //    Question question = new Question();
+        //    return View(question);
+        //}
 
-        [HttpPost]
-        [AuthorisationRequired]
-        public ActionResult Create(Question question)
-        {
-            User user = (User)Session["User"];
+        //[HttpPost]
+        //[AuthorisationRequired]
+        //public ActionResult Create(Question question)
+        //{
+        //    User user = (User)Session["User"];
 
-            try
-            {
-                //   PROCEDURE INSERTQUESTION(PENONCER IN QUESTION.ENONCER%TYPE,PDIFFICULTER IN QUESTION.DIFFICULTER%TYPE);
+        //    try
+        //    {
+        //        //   PROCEDURE INSERTQUESTION(PENONCER IN QUESTION.ENONCER%TYPE,PDIFFICULTER IN QUESTION.DIFFICULTER%TYPE);
 
-                // Ajout de la question
-                OracleCommand oraclCommandAjoutQuestion = new OracleCommand("GESTIONQUESTION", user.connexion);
-                oraclCommandAjoutQuestion.CommandText = "GESTIONQUESTION.INSERTQUESTION";
-                oraclCommandAjoutQuestion.CommandType = CommandType.StoredProcedure;
+        //        // Ajout de la question
+        //        OracleCommand oraclCommandAjoutQuestion = new OracleCommand("GESTIONQUESTION", user.connexion);
+        //        oraclCommandAjoutQuestion.CommandText = "GESTIONQUESTION.INSERTQUESTION";
+        //        oraclCommandAjoutQuestion.CommandType = CommandType.StoredProcedure;
 
-                OracleParameter orapamnumEnoncer = new OracleParameter("PENONCER", OracleDbType.Varchar2, 100);
-                orapamnumEnoncer.Direction = ParameterDirection.Input;
-                orapamnumEnoncer.Value = question.Enoncer;
-                oraclCommandAjoutQuestion.Parameters.Add(orapamnumEnoncer);
+        //        OracleParameter orapamnumEnoncer = new OracleParameter("PENONCER", OracleDbType.Varchar2, 100);
+        //        orapamnumEnoncer.Direction = ParameterDirection.Input;
+        //        orapamnumEnoncer.Value = question.Enoncer;
+        //        oraclCommandAjoutQuestion.Parameters.Add(orapamnumEnoncer);
 
-                OracleParameter orapamDificulter = new OracleParameter("PDIFFICULTER", OracleDbType.Int32);
-                orapamDificulter.Direction = ParameterDirection.Input;
-                orapamDificulter.Value = question.Dificulter;
-                oraclCommandAjoutQuestion.Parameters.Add(orapamDificulter);
+        //        OracleParameter orapamDificulter = new OracleParameter("PDIFFICULTER", OracleDbType.Int32);
+        //        orapamDificulter.Direction = ParameterDirection.Input;
+        //        orapamDificulter.Value = question.Dificulter;
+        //        oraclCommandAjoutQuestion.Parameters.Add(orapamDificulter);
 
-                oraclCommandAjoutQuestion.ExecuteNonQuery();
+        //        oraclCommandAjoutQuestion.ExecuteNonQuery();
 
-                // ########################################################################################################################################
+        //        // ########################################################################################################################################
 
-                //  PROCEDURE INESRTREPONSE(PENONCER IN REPONSE.ENONCERREPONSE%TYPE,PBONNE IN REPONSE.ESTBONNE%TYPE,PNUMQUESTION IN REPONSE.NUMQUESTION%TYPE);
+        //        //  PROCEDURE INESRTREPONSE(PENONCER IN REPONSE.ENONCERREPONSE%TYPE,PBONNE IN REPONSE.ESTBONNE%TYPE,PNUMQUESTION IN REPONSE.NUMQUESTION%TYPE);
 
-                // Ajout des choix de réponce
-                OracleCommand oraclCommandAjoutReponce1 = new OracleCommand("GESTIONQUESTION", user.connexion);
-                oraclCommandAjoutReponce1.CommandText = "GESTIONQUESTION.INESRTREPONSE";
-                oraclCommandAjoutReponce1.CommandType = CommandType.StoredProcedure;
+        //        // Ajout des choix de réponce
+        //        OracleCommand oraclCommandAjoutReponce1 = new OracleCommand("GESTIONQUESTION", user.connexion);
+        //        oraclCommandAjoutReponce1.CommandText = "GESTIONQUESTION.INESRTREPONSE";
+        //        oraclCommandAjoutReponce1.CommandType = CommandType.StoredProcedure;
 
-                OracleParameter orapamnumEnoncerRep = new OracleParameter("PENONCER", OracleDbType.Int32);
-                orapamnumEnoncer.Direction = ParameterDirection.Input;
-                orapamnumEnoncer.Value = question.Enoncer;
-                oraclCommandAjoutQuestion.Parameters.Add(orapamnumEnoncerRep);
+        //        OracleParameter orapamnumEnoncerRep = new OracleParameter("PENONCER", OracleDbType.Int32);
+        //        orapamnumEnoncer.Direction = ParameterDirection.Input;
+        //        orapamnumEnoncer.Value = question.Enoncer;
+        //        oraclCommandAjoutQuestion.Parameters.Add(orapamnumEnoncerRep);
 
-                //OracleParameter orapamnumEstbonne1 = new OracleParameter("PBONNE", OracleDbType.Varchar2, 100);
-                //orapamnumEstbonne1.Direction = ParameterDirection.Input;
-                //orapamnumEstbonne1.Value = question.BonneReponce;
-                //oraclCommandAjoutQuestion.Parameters.Add(orapamnumEstbonne1);
-
-
-
-                // Enoncer
-                //oraclCommandAjoutReponce.Parameters.Add(orapamnumEnoncer);
+        //        //OracleParameter orapamnumEstbonne1 = new OracleParameter("PBONNE", OracleDbType.Varchar2, 100);
+        //        //orapamnumEstbonne1.Direction = ParameterDirection.Input;
+        //        //orapamnumEstbonne1.Value = question.BonneReponce;
+        //        //oraclCommandAjoutQuestion.Parameters.Add(orapamnumEstbonne1);
 
 
 
+        //        // Enoncer
+        //        //oraclCommandAjoutReponce.Parameters.Add(orapamnumEnoncer);
 
-                //oraclCommandAjoutReponce.ExecuteNonQuery();
 
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex) {
-                return RedirectToAction("Index");
-            }
-        }
+
+
+        //        //oraclCommandAjoutReponce.ExecuteNonQuery();
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch (Exception ex) {
+        //        return RedirectToAction("Index");
+        //    }
+        //}
 
         [HttpGet]
         [AuthorisationRequired]
         public ActionResult Lister()
         {
-            
+            User user = (User)Session["User"];
+
+            OracleCommand ObjSelct = new OracleCommand("select * from QUESTION", user.connexion);
+            OracleDataReader ObjeRead = ObjSelct.ExecuteReader();
+            List<Question> q = new List<Question>();
+            while (ObjeRead.Read())
+            {
+                Question QQ = new Question();
+                QQ.Id = ObjeRead.GetInt32(0);
+                QQ.Enoncer = ObjeRead.GetString(1);
+                QQ.flag = ObjeRead.GetString(2);
+                QQ.Dificulter = ObjeRead.GetInt32(3);
+
+                q.Add(QQ);
+            }
+            ObjeRead.Close();
+
+
+
+            return View(q);
+        }
+
+        public ActionResult Edit(String id)
+        {
             return View();
         }
 
-        
+        public ActionResult Details(String id)
+        {
+            return View();
+        }
+
+        public ActionResult Delete(String id)
+        {
+            return View();
+        }
+
+
+
+
 
 
         [HttpGet]

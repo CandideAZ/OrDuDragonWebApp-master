@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using OrDuDragon.Models;
+using Oracle.DataAccess.Client;
+using System.Data;
+
 
 namespace OrDuDragon.Models
 {
@@ -20,11 +24,22 @@ namespace OrDuDragon.Models
         public bool Reponse3Bonne { get; set; }
         public bool Reponse4Bonne { get; set; }
         public int Dificulter { get; set; }
+        public string flag { get; set; }
         public Question() { }
 
-    }
+        
 
+
+
+    }
     public class Questions
     {
+        private List<Question> List = new List<Question>();
     }
+     
+    
+
+    
+
+
 }
