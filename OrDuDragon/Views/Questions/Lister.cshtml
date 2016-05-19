@@ -1,4 +1,4 @@
-﻿@model List<Question>
+﻿@model IList<OrDuDragon.Models.Question>
     
 
 @{
@@ -26,15 +26,19 @@
         <th></th>
     </tr>
 
-    @foreach (IMDB.Models.Actor actor in ViewBag.Actors)
+    @foreach (var item  in Model)
     {
-        <a href="@Url.Action("Details", "Actors", new { id = actor.Id })"
-           style="text-decoration:none"
-           data-toggle="tooltip"
-           data-placement="right"
-           title="Voir les détails de @actor.Name">
-            <h4><img src="@Url.Content(actor.GetAvatarURL())" class="SmallAvatar" /> @actor.Name</h4>
-        </a>
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Id)</td>
+            <td>@Html.DisplayFor(modelItem => item.Enoncer)</td>
+            <td>@Html.DisplayFor(modelItem => item.flag)</td>
+            <td>@Html.DisplayFor(modelItem => item.Dificulter)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
     }
     @*@foreach ()
             {

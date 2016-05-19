@@ -119,17 +119,17 @@ namespace OrDuDragon.Controllers
             return View(q);
         }
 
-        public ActionResult Edit(String id)
+        public ActionResult Edit(int id)
         {
             return View();
         }
 
-        public ActionResult Details(String id)
+        public ActionResult Details(int id)
         {
             return View();
         }
 
-        public ActionResult Delete(String id)
+        public ActionResult Delete(int id)
         {
             return View();
         }
